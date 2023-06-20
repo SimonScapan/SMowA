@@ -3,7 +3,7 @@ Project Repository for Workshop - Samowodźace Modelowe Awto (SMowA)
 
 
 # Workshop SMowA - Samowodźace Modelowe Awto (19. - 21.07.2023)
-![](SMowA.png)
+![SMowA Image](images/SMowA.png)
 
 
 
