@@ -20,9 +20,7 @@ from lane_detection import lanedetect_steer
 # initialize camera #
 #####################
 
-pi_camera = cv2.VideoCapture(-1)
-pi_camera.set(3,160) #SCREEN_WIDTH
-pi_camera.set(4,120) #SCREEN_HEIGHT
+pi_camera = cv2.VideoCapture(0)
 
 ####################
 # initialize picar #
