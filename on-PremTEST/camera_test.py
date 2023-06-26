@@ -11,8 +11,6 @@ import time
 #####################
 
 pi_camera = cv2.VideoCapture(0)
-pi_camera.set(3,160) #SCREEN_WIDTH
-pi_camera.set(4,120) #SCREEN_HEIGHT
 
 #################################
 # initialize Monitoring Website #
