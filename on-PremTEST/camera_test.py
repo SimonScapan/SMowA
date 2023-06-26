@@ -10,7 +10,7 @@ import time
 # initialize camera #
 #####################
 
-pi_camera = cv2.VideoCapture(-1)
+pi_camera = cv2.VideoCapture(1)
 
 #################################
 # initialize Monitoring Website #
