@@ -19,6 +19,7 @@ if [ "$(whoami)" != "root" ] ; then
 fi
 
 sudo apt-get update
+#sudo apt-get upgrade -y
 
 function if_continue(){
     while :; do
@@ -60,7 +61,6 @@ function print_result(){
 ###################################
 # install python-pip python-smbus python-opencv runtime #
 ###################################
-
 echo -e "\nInstalling python3-smbus and git\n"
 if sudo apt-get install python3-smbus git -y; then
     echo -e "    Successfully installed python-smbus and git\n"
