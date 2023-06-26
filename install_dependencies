@@ -1,6 +1,15 @@
 #!/bin/bash
 #Installation
 
+##Tested on:
+
+#- Raspbian (RaspberryPi - think of those possibilities)
+
+#```
+
+# All of these commands are run from the base folder (SunFounder_Smart_Video_Car_Kit_V2.0_for_Raspberry_Pi), wherever you clone it to
+repo_dir=`pwd`
+
 is_installed_python_smbus=False
 is_installed_python_opencv=False
 
