@@ -34,12 +34,12 @@ picar.setup()
 
 fw.offset = 0
 #bw.speed = 0
-#pan_servo.offset = 10 
-tilt_servo.offset = 0
+pan_servo.offset = 10 
+#tilt_servo.offset = 0
 
 fw.turn(100)
-#pan_servo.write(90)
-tilt_servo.write(60)
+pan_servo.write(90)
+#tilt_servo.write(60)
 # motor_speed = 60
 
 #################################
