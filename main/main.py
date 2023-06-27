@@ -31,7 +31,7 @@ bw = back_wheels.Back_Wheels()
 fw = front_wheels.Front_Wheels()
 pan_servo = Servo.Servo(1)  # horizontal
 tilt_servo = Servo.Servo(2) # vertical
-#picar.setup()
+picar.setup()
 
 fw.offset = 0
 bw.speed = 40
