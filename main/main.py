@@ -33,7 +33,7 @@ fw.offset = 0 # offset steering
 fw.turn(100)  # center steering
 
 tilt_servo.offset = 0 # offset camera height
-tilt_servo.write(190)  # move camera down for better view
+tilt_servo.write(60)  # move camera down for better view
 
 # bw.speed = 15 # let the car drive slowly
 
@@ -88,5 +88,4 @@ if __name__ == '__main__':
     try:
         app.run(host='0.0.0.0', debug=False)
     except KeyboardInterrupt:
-        pass
-        #destroy()
+        destroy()
