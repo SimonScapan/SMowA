@@ -64,7 +64,7 @@ def gen(camera):
             print('steering: ' + str(steering) )
             # Give the steering instruction from lanedetect_steer to the Car-instance
             #car.steer(steering)
-            #time.sleep(0.0125)
+            time.sleep(0.0125)
 
         except Exception as e:
             print("Error in detection")
