@@ -26,20 +26,20 @@ pi_camera = cv2.VideoCapture(0)
 # initialize picar #
 ####################
 
-def offset_car():
-    bw = back_wheels.Back_Wheels()
-    fw = front_wheels.Front_Wheels()
-    pan_servo = Servo.Servo(1)  # horizontal
-    tilt_servo = Servo.Servo(2) # vertical
-    #picar.setup()
 
-    fw.offset = 0
-    bw.speed = 0
-    pan_servo.offset = 10 
-    tilt_servo.offset = 0
+bw = back_wheels.Back_Wheels()
+fw = front_wheels.Front_Wheels()
+pan_servo = Servo.Servo(1)  # horizontal
+tilt_servo = Servo.Servo(2) # vertical
+#picar.setup()
 
-    fw.turn(100)
-    tilt_servo.write(60)
+fw.offset = 0
+bw.speed = 10
+#pan_servo.offset = 10 
+tilt_servo.offset = 0
+
+fw.turn(100)         # center front wheels
+tilt_servo.write(60) # move camera down
 
 #################################
 # initialize Monitoring Website #
@@ -57,9 +57,6 @@ def index():
     return render_template('index.html')
 
 def gen(camera):
-
-    offset_car # offset car, especialy turn camera down
-
     while True:
         # get frame from VideoCamera-instance
         ret, frame = pi_camera.read()
