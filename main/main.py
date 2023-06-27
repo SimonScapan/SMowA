@@ -66,9 +66,9 @@ def gen(camera):
         try:
             
             # Get steering input instruction from lanedetect_steer
-            frame, canny, steering=lanedetect_steer.lane_detection(frame,"outdoor")
-            # frame, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
-            
+            #frame, canny, steering=lanedetect_steer.lane_detection(frame,"outdoor")
+            frame_test, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
+            print('steering: ' + str(steering) )
             # Give the steering instruction from lanedetect_steer to the Car-instance
             #car.steer(steering)
             #time.sleep(0.0125)
