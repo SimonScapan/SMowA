@@ -5,7 +5,6 @@ from flask import Flask, render_template, Response, request
 # Time
 import time
 
-
 #####################
 # initialize camera #
 #####################
@@ -22,10 +21,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/objects')
-def index2():
-    return render_template('index2.html')
-
 def gen(camera):
     while True:
             # get frame from VideoCamera-instance
@@ -38,7 +33,14 @@ def gen(camera):
             frame = frame.tobytes()
             yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
-gen
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(pi_camera),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+if __name__ == '__main__':
+
+    app.run(host='0.0.0.0', debug=False)
 
 
 ### for running localy
