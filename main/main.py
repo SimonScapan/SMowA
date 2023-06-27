@@ -61,11 +61,12 @@ def gen(camera):
             # Get steering input instruction from lanedetect_steer
             #frame, canny, steering=lanedetect_steer.lane_detection(frame,"outdoor")
             frame, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
-            print('steering: ' + str(steering) )
+            print('steering calc:  ' + str(steering) )
             # Give the steering instruction from lanedetect_steer to the Car-instance
-            #car.steer(steering)
-            fw.turn(100 - (steering * 0.5)) # initial tilt 100 minus smoothed steering score 
-            #time.sleep(0.0125)
+            steering_value =  100 - (steering * 0.5) # initial tilt 100 minus smoothed steering score 
+            print('steering value: ' + str(steering_value) )
+            fw.turn(steering_value)
+            
             time.sleep(0.5)
 
         except Exception as e:
