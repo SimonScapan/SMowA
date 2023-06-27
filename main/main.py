@@ -63,7 +63,7 @@ def gen(camera):
             frame, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
             print('steering calc:  ' + str(steering) )
             # Give the steering instruction from lanedetect_steer to the Car-instance
-            steering_value =  100 - (steering * 0.5) # initial tilt 100 minus smoothed steering score 
+            steering_value =  100 - (steering * 0.3) # initial tilt 100 minus smoothed steering score 
             print('steering value: ' + str(steering_value) )
             fw.turn(steering_value)
             
