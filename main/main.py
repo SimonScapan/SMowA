@@ -34,7 +34,7 @@ picar.setup()
 
 fw.offset = 0
 bw.speed = 0
-pan_servo.offset = 10
+pan_servo.offset = 30
 tilt_servo.offset = 0
 
 fw.turn(90)
@@ -68,7 +68,7 @@ def gen(camera):
             
             # Get steering input instruction from lanedetect_steer
             #frame, canny, steering=lanedetect_steer.lane_detection(frame,"outdoor")
-            frame_test, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
+            frame, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
             print('steering: ' + str(steering) )
             # Give the steering instruction from lanedetect_steer to the Car-instance
             #car.steer(steering)
