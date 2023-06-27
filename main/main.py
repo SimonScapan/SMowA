@@ -34,8 +34,7 @@ tilt_servo = Servo.Servo(2) # vertical
 picar.setup()
 
 fw.offset = 0
-bw.speed = 40
-#pan_servo.offset = 10 
+bw.speed = 10
 tilt_servo.offset = 0
 
 fw.turn(100)         # center front wheels
@@ -88,10 +87,8 @@ def video_feed():
     return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-def destroy():
+def destroy(): 
     bw.stop() # stop car
-
-    pi_camera.release()
 
 if __name__ == '__main__':
     try:
