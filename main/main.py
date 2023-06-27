@@ -62,10 +62,13 @@ def gen(camera):
             #frame, canny, steering=lanedetect_steer.lane_detection(frame,"outdoor")
             frame, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
             print('steering: ' + str(steering) )
+            print('canny:    ' + str(canny)    )
+            print('###########################')
             # Give the steering instruction from lanedetect_steer to the Car-instance
             #car.steer(steering)
+            fw.turn(100 - steering) 
             #time.sleep(0.0125)
-            #time.sleep(0.5)
+            time.sleep(0.5)
 
         except Exception as e:
             print("Error in detection")
