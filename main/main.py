@@ -33,7 +33,7 @@ fw.offset = 0 # offset steering
 fw.turn(100)  # center steering
 
 tilt_servo.offset = 0 # offset camera height
-tilt_servo.write(210)  # move camera down for better view
+tilt_servo.write(90)  # move camera down for better view
 
 # bw.speed = 15 # let the car drive slowly
 
