@@ -1,7 +1,6 @@
 ##################
 # import section #
 ##################
-
 # PiCar
 from picar import front_wheels, back_wheels
 from picar.SunFounder_PCA9685 import Servo
@@ -19,39 +18,34 @@ from lane_detection import lanedetect_steer
 #####################
 # initialize camera #
 #####################
-
 pi_camera = cv2.VideoCapture(0)
 
 ####################
 # initialize picar #
 ####################
+bw = back_wheels.Back_Wheels()   # backwheels for driving
+fw = front_wheels.Front_Wheels() # front steering
+pan_servo = Servo.Servo(1)       # cam horizontal
+tilt_servo = Servo.Servo(2)      # cam vertical
+picar.setup()                    # wake up all servos
 
+fw.offset = 0 # offset steering
+fw.turn(100)  # center steering
 
-bw = back_wheels.Back_Wheels()
-fw = front_wheels.Front_Wheels()
-pan_servo = Servo.Servo(1)  # horizontal
-tilt_servo = Servo.Servo(2) # vertical
-picar.setup()
+tilt_servo.offset = 0 # offset camera height
+tilt_servo.write(60)  # move camera down for better view
 
-fw.offset = 0
-bw.speed = 15
-tilt_servo.offset = 0
-
-fw.turn(100)         # center front wheels
-tilt_servo.write(60) # move camera down
+# bw.speed = 15 # let the car drive slowly
 
 #################################
 # initialize Monitoring Website #
 #################################
-
 app = Flask(__name__)
 
-#############################
-# defining helper functions #
-#############################
-
+##################
+# main functions #
+##################
 @app.route('/')
-
 def index():
     return render_template('index.html')
 
@@ -82,7 +76,6 @@ def gen(camera):
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 @app.route('/video_feed')
-
 def video_feed():
     return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
