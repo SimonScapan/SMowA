@@ -28,18 +28,18 @@ pi_camera = cv2.VideoCapture(0)
 
 bw = back_wheels.Back_Wheels()
 fw = front_wheels.Front_Wheels()
-pan_servo = Servo.Servo(1)
-tilt_servo = Servo.Servo(2)
+pan_servo = Servo.Servo(1)  # horizontal
+tilt_servo = Servo.Servo(2) # vertical
 picar.setup()
 
 fw.offset = 0
 bw.speed = 0
-pan_servo.offset = 10 # horizontal
-tilt_servo.offset = -20
+pan_servo.offset = 10 
+tilt_servo.offset = 0
 
 fw.turn(90)
 pan_servo.write(90)
-tilt_servo.write(90)
+tilt_servo.write(60)
 # motor_speed = 60
 
 #################################
