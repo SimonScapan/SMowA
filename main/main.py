@@ -34,7 +34,7 @@ tilt_servo = Servo.Servo(2) # vertical
 #picar.setup()
 
 fw.offset = 0
-bw.speed = 10
+bw.speed = -20
 #pan_servo.offset = 10 
 tilt_servo.offset = 0
 
@@ -94,19 +94,10 @@ if __name__ == '__main__':
 
 
 ######################################################################################################
-'''
+
 def nothing(x):
     pass
 
 def destroy():
     bw.stop()
     pi_camera.release()
-
-def test():
-    fw.turn(90)
-
-def main():
-    pan_angle = 90              # initial angle for pan
-    tilt_angle = 90             # initial angle for tilt
-    fw_angle = 90
-'''
