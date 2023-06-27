@@ -34,8 +34,8 @@ picar.setup()
 
 fw.offset = 0
 bw.speed = 0
-pan_servo.offset = 30
-tilt_servo.offset = 0
+pan_servo.offset = 10 # horizontal
+tilt_servo.offset = -20
 
 fw.turn(90)
 pan_servo.write(90)
