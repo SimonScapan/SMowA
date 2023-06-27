@@ -38,7 +38,7 @@ pan_servo.offset = 10
 tilt_servo.offset = 0
 
 fw.turn(100)
-tilt_servo.write(80)
+tilt_servo.write(70)
 
 #################################
 # initialize Monitoring Website #
