@@ -34,7 +34,7 @@ tilt_servo = Servo.Servo(2) # vertical
 picar.setup()
 
 fw.offset = 0
-bw.speed = 10
+bw.speed = 15
 tilt_servo.offset = 0
 
 fw.turn(100)         # center front wheels
