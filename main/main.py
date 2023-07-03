@@ -67,7 +67,7 @@ def gen(camera):
             print('steering value: ' + str(steering_value) )
             fw.turn(steering_value)
             
-            time.sleep(0.5)
+            time.sleep(0.2)
 
         except Exception as e:
             print("Error in detection")
