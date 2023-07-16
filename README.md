@@ -19,6 +19,3 @@ The track detection by image processing elements is divided into the following a
 - Lane marking
 - Slope
 - Weighted Image
-
-# How To run the car
-
