@@ -16,7 +16,7 @@ def grayscale(img):
     
     This will return an image with only one color channel.
     """
-    return cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 def brightness_contrast(input_img, contrast, brightness):
     """
@@ -33,11 +33,11 @@ def brightness_contrast(input_img, contrast, brightness):
     contrast_img = enhancer.enhance(contrast)
 
     # enhance brightness
-    enhancer = ImageEnhance.Brightness(contrast_img)
-    brightness_img = enhancer.enhance(brightness)
+    #enhancer = ImageEnhance.Brightness(contrast_img)
+    #brightness_img = enhancer.enhance(brightness)
     
     # change PIL.Image back to np.array
-    img = np.array(brightness_img)
+    img = np.array(contrast_img)
 
     return img
 
@@ -285,6 +285,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)
 
+    output = gray_img
     return output, canny_mask, steering
 
 # Lane finding Pipeline outdoor

@@ -41,10 +41,10 @@ for image_path in list(os.listdir(f'./visual_lane_detection/lane_detection_data/
     # plot outputs
     fig = plt.figure(figsize=(20, 10),num=f'{image_path}')
     ax = fig.add_subplot(1, 2, 1,xticks=[], yticks=[])
-    plt.imshow(picture)
+    plt.imshow(image)
     ax.set_title("canny transformation")
     ax = fig.add_subplot(1, 2, 2,xticks=[], yticks=[])
-    plt.imshow(canny)
+    plt.imshow(picture)
     ax.set_title(f"Output Image - Steering: {steering}") 
     plt.show()
 
