@@ -266,8 +266,8 @@ def lane_finding_pipeline_indoor(image):
     ## Canny Edge Detection
     # Calculate good threshold
     med_val = np.median(smoothed_img) 
-    lower = int(max(0 ,2*med_val))
-    upper = int(min(255,1.9*med_val))
+    lower = int(max(0 ,0.7*med_val))
+    upper = int(min(255,1.3*med_val))
     # perform canny edge detection
     canny_img = canny(img = smoothed_img, low_threshold = lower, high_threshold = upper)
 
