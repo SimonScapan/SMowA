@@ -259,7 +259,7 @@ def lane_finding_pipeline_indoor(image):
     # Grayscale
     gray_img = grayscale(image)
     # Change Brightness and Contrast to avoid misclassification caused by ground   
-    bc_img = brightness_contrast(input_img = gray_img, contrast = 2, brightness = 0.6)
+    bc_img = brightness_contrast(input_img = gray_img, contrast = 2, brightness = 0.5)
     # Gaussian Smoothing
     smoothed_img = gaussian_blur(img = bc_img, kernel_size = 17)
     
