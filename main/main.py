@@ -60,7 +60,7 @@ def gen(camera):
             
             # Get steering input instruction from lanedetect_steer
             #frame, canny, steering=lanedetect_steer.lane_detection(frame,"outdoor")
-            frame, canny, steering=lanedetect_steer.lane_detection(frame,"indoor")
+            frame, canny, steering=lanedetect_steer.lane_detection(frame,"outdoor")
             print('steering calc:  ' + str(steering) )
             # Give the steering instruction from lanedetect_steer to the Car-instance
             steering_value =  100 - (steering * 0.3) # initial tilt 100 minus smoothed steering score 
