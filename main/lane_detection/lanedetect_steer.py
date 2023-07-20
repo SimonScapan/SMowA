@@ -264,6 +264,10 @@ def lane_finding_pipeline_indoor(image):
     # Gaussian Smoothing
     smoothed_img = gaussian_blur(img = bc_img, kernel_size = 13)
     
+    lower_bound = np.array([0, 0, 0])
+    upper_bound = np.array([350,55,100])
+    masked_img = cv2.inRange(smoothed_img, lower_bound, upper_bound)
+
     ## Canny Edge Detection
     # Calculate good threshold
     med_val = np.median(smoothed_img) 
@@ -287,7 +291,7 @@ def lane_finding_pipeline_indoor(image):
     # # compute steering advice for car
     # steering = steer(image, left_line, right_line)
 
-    output = smoothed_img
+    output = masked_img
 
     canny_mask = 0
 
