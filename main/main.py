@@ -35,7 +35,7 @@ fw.turn(100)  # center steering
 tilt_servo.offset = 0 # offset camera height
 tilt_servo.write(90)  # move camera down for better view
 
-#bw.speed = 20  # let the car drive slowly
+bw.speed = 20  # let the car drive slowly
 
 #################################
 # initialize Monitoring Website #
