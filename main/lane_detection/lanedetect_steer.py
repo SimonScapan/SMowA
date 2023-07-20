@@ -264,7 +264,8 @@ def lane_finding_pipeline_indoor(image):
     # Gaussian Smoothing
     smoothed_img = gaussian_blur(img = bc_img, kernel_size = 13)
     
-    masked_img = cv2.inRange(smoothed_img, (36, 0, 0), (70, 255,255))
+    masked_img = cv2.threshold(smoothed_img, 127, 255, cv2.THRESH_BINARY)[1]
+
 
     ## Canny Edge Detection
     # Calculate good threshold
