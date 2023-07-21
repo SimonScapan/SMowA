@@ -259,9 +259,14 @@ def lane_finding_pipeline_indoor(image):
 
     # Grayscale
     gray_img = grayscale(image)
-    # Gaussian Smoothing
-    smoothed_img = gaussian_blur(img = gray_img, kernel_size = 3)
     
+    # separate image to only black and white
+    masked_img = cv2.threshold(gray_img, 235, 255, cv2.THRESH_BINARY)[1]
+    
+    # Gaussian Smoothing
+    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 3)
+    
+
     ## Canny Edge Detection
     # Calculate good threshold
     med_val = np.median(smoothed_img) 
@@ -286,7 +291,7 @@ def lane_finding_pipeline_indoor(image):
     steering = steer(image, left_line, right_line)
 
     #output = gray_img
-    
+
     return output, canny_mask, steering
 
 # Lane finding Pipeline outdoor
