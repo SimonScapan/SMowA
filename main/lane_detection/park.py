@@ -16,7 +16,7 @@ def grayscale(img):
     
     This will return an image with only one color channel.
     """
-    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    return cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
 def brightness_contrast(input_img, contrast, brightness):
     """
@@ -33,11 +33,11 @@ def brightness_contrast(input_img, contrast, brightness):
     contrast_img = enhancer.enhance(contrast)
 
     # enhance brightness
-    #enhancer = ImageEnhance.Brightness(contrast_img)
-    #brightness_img = enhancer.enhance(brightness)
+    enhancer = ImageEnhance.Brightness(contrast_img)
+    brightness_img = enhancer.enhance(brightness)
     
     # change PIL.Image back to np.array
-    img = np.array(contrast_img)
+    img = np.array(brightness_img)
 
     return img
 
@@ -80,7 +80,7 @@ def region_of_interest(img, vertices, vertices_car):
     masked_image = cv2.bitwise_and(img, mask)
 
     # cover also the nose of the cars chassis at bottom of stream
-    cv2.fillConvexPoly(masked_image, vertices_car, 0)
+    #cv2.fillConvexPoly(masked_image, vertices_car, 0)
 
     return masked_image
 
@@ -94,10 +94,10 @@ def get_vertices(image, scope):
 
     if scope == 'border':
         rows, cols = image.shape[:2]
-        bottom_left  = [cols*-0.2, rows]
-        top_left     = [cols*0.1, rows*0.4]
+        bottom_left  = [cols*0, rows]
+        top_left     = [cols*0, rows*0.3]
         bottom_right = [cols*1.2, rows]
-        top_right    = [cols*0.9, rows*0.4] 
+        top_right    = [cols*0.9, rows*0.3] 
 
         ver = np.array([[bottom_left, top_left, top_right, bottom_right]], dtype=np.int32)
     elif scope =='car':
@@ -137,10 +137,12 @@ def slope_lines(image,lines):
 
     left_lines = [] # Like /
     right_lines = [] # Like \
+    print(f"line count: {len(lines)}")
     for line in lines:
         for x1,y1,x2,y2 in line:
 
             if x1 == x2:
+                print("-> erro vertical line")
                 pass #Vertical Lines
             else:
                 m = (y2 - y1) / (x2 - x1)
@@ -151,10 +153,10 @@ def slope_lines(image,lines):
                 elif m >= 0:
                     right_lines.append((m,c))
 
-    left_line = np.mean(left_lines, axis=0)
-    right_line = np.mean(right_lines, axis=0)
+        left_line = np.mean(left_lines, axis=0)
+        right_line = np.mean(right_lines, axis=0)
 
-    return left_line, right_line
+        return left_line, right_line
 
 def slope(image, left_line, right_line):
     """
@@ -256,17 +258,22 @@ def lane_detection(image, location='indoor'):
 
 # Lane finding Pipeline indoor
 def lane_finding_pipeline_indoor(image):
-
     # Grayscale
     gray_img = grayscale(image)
-    # Gaussian Smoothing
-    smoothed_img = gaussian_blur(img = gray_img, kernel_size = 3)
+    # Change Brightness and Contrast to avoid misclassification caused by ground   
+    # bc_img = brightness_contrast(input_img = gray_img, contrast = 2, brightness = 0.4)
     
+    masked_img = cv2.threshold(gray_img, 235, 255, cv2.THRESH_BINARY)[1]
+
+    # Gaussian Smoothing
+    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 3)
+
+
     ## Canny Edge Detection
     # Calculate good threshold
     med_val = np.median(smoothed_img) 
-    lower = int(max(0 ,0.7*med_val))
-    upper = int(min(255,1.3*med_val))
+    lower = int(max(0 ,0*med_val))
+    upper = int(min(255, 0.5*med_val))
     # perform canny edge detection
     canny_img = canny(img = smoothed_img, low_threshold = lower, high_threshold = upper)
 
@@ -274,18 +281,26 @@ def lane_finding_pipeline_indoor(image):
     masked_img = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
     # Hough Transform Lines
     lines, line_img = hough_lines(img = masked_img, rho = 1, theta = np.pi/180, threshold = 20, min_line_len = 20, max_line_gap = 180)
+
     # draw left and right line
     left_line, right_line = slope_lines(line_img, lines)
+    print(f"left: {left_line}")
+    print(f"right: {right_line}")
     # draw slope between two lines
     slope_weighted_img = slope(line_img, left_line, right_line)
     # add layer with slope lines to original input image
     output = weighted_img(img = slope_weighted_img, initial_img = image, α=0.8, β=1., γ=0.)
-    # mask the output image again for better interpretation of results
-    canny_mask = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
-    # compute steering advice for car
-    steering = steer(image, left_line, right_line)
+    # # mask the output image again for better interpretation of results
+    # canny_mask = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
+    # # compute steering advice for car
+    # steering = steer(image, left_line, right_line)
 
-    output = gray_img
+    output = smoothed_img
+
+    canny_mask = []
+    steering = 0
+
+
     return output, canny_mask, steering
 
 # Lane finding Pipeline outdoor
