@@ -267,6 +267,7 @@ def lane_finding_pipeline_indoor(image):
     # Gaussian Smoothing
     smoothed_img = gaussian_blur(img = masked_img, kernel_size = 11)
 
+    """    
 
     ## Canny Edge Detection
     # Calculate good threshold
@@ -276,7 +277,7 @@ def lane_finding_pipeline_indoor(image):
     # perform canny edge detection
     canny_img = canny(img = smoothed_img, low_threshold = lower, high_threshold = upper)
 
-    """    # Mask Image Within a Polygon for each environment and car
+    # Mask Image Within a Polygon for each environment and car
     masked_img = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
     # Hough Transform Lines
     lines, line_img = hough_lines(img = masked_img, rho = 1, theta = np.pi/180, threshold = 20, min_line_len = 20, max_line_gap = 180)
@@ -292,7 +293,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)"""
 
-    output = canny_img
+    output = smoothed_img
 
     canny_mask, steering = 0
 
