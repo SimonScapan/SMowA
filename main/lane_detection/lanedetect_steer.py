@@ -282,9 +282,9 @@ def lane_finding_pipeline_indoor(image):
     lines, line_img = hough_lines(img = masked_img, rho = 1, theta = np.pi/180, threshold = 20, min_line_len = 20, max_line_gap = 180)
 
     # draw left and right line
-    left_line, right_line = slope_lines(line_img, lines)
+    # left_line, right_line = slope_lines(line_img, lines)
     # draw slope between two lines
-    slope_weighted_img = slope(line_img, left_line, right_line)
+    # slope_weighted_img = slope(line_img, left_line, right_line)
     # add layer with slope lines to original input image
     # output = weighted_img(img = slope_weighted_img, initial_img = image, α=0.8, β=1., γ=0.)
     # # mask the output image again for better interpretation of results
@@ -292,7 +292,7 @@ def lane_finding_pipeline_indoor(image):
     # # compute steering advice for car
     # steering = steer(image, left_line, right_line)
 
-    output = slope_weighted_img
+    output = line_img
 
     canny_mask = []
     steering = 0
