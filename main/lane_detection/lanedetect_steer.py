@@ -137,7 +137,6 @@ def slope_lines(image,lines):
 
     left_lines = [] # Like /
     right_lines = [] # Like \
-    print(f"lines: {lines}")
     for line in lines:
         for x1,y1,x2,y2 in line:
 
@@ -283,6 +282,8 @@ def lane_finding_pipeline_indoor(image):
 
     # draw left and right line
     left_line, right_line = slope_lines(line_img, lines)
+    print(f"left: {left_line}")
+    print(f"right: {right_line}")
     # draw slope between two lines
     slope_weighted_img = slope(line_img, left_line, right_line)
     # add layer with slope lines to original input image
