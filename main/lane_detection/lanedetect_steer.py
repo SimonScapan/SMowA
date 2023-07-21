@@ -240,7 +240,10 @@ def steer(image, left_line, right_line):
     else:
         steering = (x2 - x1) #/100
 
-   
+    if steering > 150:
+        steering = 150
+    elif steering < -150:
+        steering = -150
 
         return steering
 
