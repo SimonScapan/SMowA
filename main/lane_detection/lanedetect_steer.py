@@ -277,7 +277,7 @@ def lane_finding_pipeline_indoor(image):
     canny_img = canny(img = smoothed_img, low_threshold = lower, high_threshold = upper)
 
     # Mask Image Within a Polygon for each environment and car
-    # masked_img = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
+    masked_img = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
     # # Hough Transform Lines
     # lines, line_img = hough_lines(img = masked_img, rho = 1, theta = np.pi/180, threshold = 20, min_line_len = 20, max_line_gap = 180)
     # # draw left and right line
@@ -291,7 +291,7 @@ def lane_finding_pipeline_indoor(image):
     # # compute steering advice for car
     # steering = steer(image, left_line, right_line)
 
-    output = canny_img
+    output = masked_img
 
     canny_mask = 0
 
