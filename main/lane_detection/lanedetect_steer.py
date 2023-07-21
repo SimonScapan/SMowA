@@ -295,7 +295,8 @@ def lane_finding_pipeline_indoor(image):
 
     output = image
 
-    canny_mask, steering = 0
+    canny_mask = []
+    steering = 0
 
 
     return output, canny_mask, steering
