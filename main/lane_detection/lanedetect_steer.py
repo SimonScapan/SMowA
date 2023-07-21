@@ -293,10 +293,6 @@ def lane_finding_pipeline_indoor(image):
 
     output = output
 
-    canny_mask = 0
-
-    steering = 0
-
     return output, canny_mask, steering
 
 # Lane finding Pipeline outdoor
