@@ -138,24 +138,27 @@ def slope_lines(image,lines):
     left_lines = [] # Like /
     right_lines = [] # Like \
     #print(lines)
-    for line in lines:
-        for x1,y1,x2,y2 in line:
+    if lines == None:
+        return []
+    else:
+        for line in lines:
+            for x1,y1,x2,y2 in line:
 
-            if x1 == x2:
-                pass #Vertical Lines
-            else:
-                m = (y2 - y1) / (x2 - x1)
-                c = y1 - m * x1
+                if x1 == x2:
+                    pass #Vertical Lines
+                else:
+                    m = (y2 - y1) / (x2 - x1)
+                    c = y1 - m * x1
 
-                if m < 0:
-                    left_lines.append((m,c))
-                elif m >= 0:
-                    right_lines.append((m,c))
+                    if m < 0:
+                        left_lines.append((m,c))
+                    elif m >= 0:
+                        right_lines.append((m,c))
 
-    left_line = np.median(left_lines, axis=0)
-    right_line = np.median(right_lines, axis=0)
+        left_line = np.median(left_lines, axis=0)
+        right_line = np.median(right_lines, axis=0)
 
-    return left_line, right_line
+        return left_line, right_line
 
 def slope(image, left_line, right_line):
     """
@@ -265,7 +268,7 @@ def lane_finding_pipeline_indoor(image):
     masked_img = cv2.threshold(gray_img, 225, 255, cv2.THRESH_BINARY)[1]
 
     # Gaussian Smoothing
-    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 13)
+    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 11)
 
 
     ## Canny Edge Detection
