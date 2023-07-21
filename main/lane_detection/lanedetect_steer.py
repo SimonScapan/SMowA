@@ -94,10 +94,10 @@ def get_vertices(image, scope):
 
     if scope == 'border':
         rows, cols = image.shape[:2]
-        bottom_left  = [cols, rows]
-        top_left     = [cols, rows*0.4]
-        bottom_right = [cols, rows]
-        top_right    = [cols, rows*0.4] 
+        bottom_left  = [cols*0.1, rows]
+        top_left     = [cols*0.1, rows*0.4]
+        bottom_right = [cols*1.2, rows]
+        top_right    = [cols*0.9, rows*0.4] 
 
         ver = np.array([[bottom_left, top_left, top_right, bottom_right]], dtype=np.int32)
     elif scope =='car':
