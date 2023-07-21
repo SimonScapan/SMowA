@@ -262,10 +262,10 @@ def lane_finding_pipeline_indoor(image):
     # Change Brightness and Contrast to avoid misclassification caused by ground   
     # bc_img = brightness_contrast(input_img = gray_img, contrast = 2, brightness = 0.4)
     
-    masked_img = cv2.threshold(gray_img, 235, 255, cv2.THRESH_BINARY)[1]
+    masked_img = cv2.threshold(gray_img, 225, 255, cv2.THRESH_BINARY)[1]
 
     # Gaussian Smoothing
-    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 35)
+    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 17)
 
 
     ## Canny Edge Detection
@@ -292,7 +292,7 @@ def lane_finding_pipeline_indoor(image):
     # # compute steering advice for car
     # steering = steer(image, left_line, right_line)
 
-    output = line_img
+    output = masked_img
 
     canny_mask = []
     steering = 0
