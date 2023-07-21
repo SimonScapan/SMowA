@@ -291,7 +291,7 @@ def lane_finding_pipeline_indoor(image):
     # # compute steering advice for car
     # steering = steer(image, left_line, right_line)
 
-    output = smoothed_img
+    output = canny_img
 
     canny_mask = 0
 
