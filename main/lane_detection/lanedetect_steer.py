@@ -138,22 +138,19 @@ def slope_lines(image,lines):
     left_lines = [] # Like /
     right_lines = [] # Like \
     #print(lines)
-    if lines == None:
-        return None
-    else:
-        for line in lines:
-            for x1,y1,x2,y2 in line:
+    for line in lines:
+        for x1,y1,x2,y2 in line:
 
-                if x1 == x2:
-                    pass #Vertical Lines
-                else:
-                    m = (y2 - y1) / (x2 - x1)
-                    c = y1 - m * x1
+            if x1 == x2:
+                pass #Vertical Lines
+            else:
+                m = (y2 - y1) / (x2 - x1)
+                c = y1 - m * x1
 
-                    if m < 0:
-                        left_lines.append((m,c))
-                    elif m >= 0:
-                        right_lines.append((m,c))
+                if m < 0:
+                    left_lines.append((m,c))
+                elif m >= 0:
+                    right_lines.append((m,c))
 
         left_line = np.median(left_lines, axis=0)
         right_line = np.median(right_lines, axis=0)
@@ -284,7 +281,7 @@ def lane_finding_pipeline_indoor(image):
     # Hough Transform Lines
     lines, line_img = hough_lines(img = masked_img, rho = 1, theta = np.pi/180, threshold = 20, min_line_len = 20, max_line_gap = 180)
 
-    if lines != None:
+    try:
         # draw left and right line
         left_line, right_line = slope_lines(line_img, lines)
         # draw slope between two lines
@@ -300,7 +297,7 @@ def lane_finding_pipeline_indoor(image):
 
         return output, canny_mask, steering
     
-    else:
+    except:
         return masked_img, 0, 0
 
 # Lane finding Pipeline outdoor
