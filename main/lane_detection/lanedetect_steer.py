@@ -258,14 +258,14 @@ def lane_detection(image, location='indoor'):
 # Lane finding Pipeline indoor
 def lane_finding_pipeline_indoor(image):
     # Grayscale
-    # gray_img = grayscale(image)
-    # # Change Brightness and Contrast to avoid misclassification caused by ground   
-    # # bc_img = brightness_contrast(input_img = gray_img, contrast = 2, brightness = 0.4)
+    gray_img = grayscale(image)
+    # Change Brightness and Contrast to avoid misclassification caused by ground   
+    # bc_img = brightness_contrast(input_img = gray_img, contrast = 2, brightness = 0.4)
     
-    # masked_img = cv2.threshold(gray_img, 225, 255, cv2.THRESH_BINARY)[1]
+    masked_img = cv2.threshold(gray_img, 225, 255, cv2.THRESH_BINARY)[1]
 
-    # # Gaussian Smoothing
-    # smoothed_img = gaussian_blur(img = masked_img, kernel_size = 11)
+    # Gaussian Smoothing
+    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 11)
 
     """    
 
@@ -293,7 +293,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)"""
 
-    output = image
+    output = smoothed_img
 
     canny_mask = []
     steering = 0
