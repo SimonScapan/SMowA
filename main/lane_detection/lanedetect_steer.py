@@ -80,7 +80,7 @@ def region_of_interest(img, vertices, vertices_car):
     masked_image = cv2.bitwise_and(img, mask)
 
     # cover also the nose of the cars chassis at bottom of stream
-    cv2.fillConvexPoly(masked_image, vertices_car, 0)
+    #cv2.fillConvexPoly(masked_image, vertices_car, 0)
 
     return masked_image
 
@@ -94,10 +94,10 @@ def get_vertices(image, scope):
 
     if scope == 'border':
         rows, cols = image.shape[:2]
-        bottom_left  = [cols*-0.2, rows]
-        top_left     = [cols*0.1, rows*0.4]
-        bottom_right = [cols*1.2, rows]
-        top_right    = [cols*0.9, rows*0.4] 
+        bottom_left  = [cols, rows]
+        top_left     = [cols, rows*0.4]
+        bottom_right = [cols, rows]
+        top_right    = [cols, rows*0.4] 
 
         ver = np.array([[bottom_left, top_left, top_right, bottom_right]], dtype=np.int32)
     elif scope =='car':
