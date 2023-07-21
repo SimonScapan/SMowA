@@ -278,20 +278,20 @@ def lane_finding_pipeline_indoor(image):
 
     # Mask Image Within a Polygon for each environment and car
     masked_img = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
-    # # Hough Transform Lines
-    # lines, line_img = hough_lines(img = masked_img, rho = 1, theta = np.pi/180, threshold = 20, min_line_len = 20, max_line_gap = 180)
-    # # draw left and right line
-    # left_line, right_line = slope_lines(line_img, lines)
-    # # draw slope between two lines
-    # slope_weighted_img = slope(line_img, left_line, right_line)
-    # # add layer with slope lines to original input image
-    # output = weighted_img(img = slope_weighted_img, initial_img = image, α=0.8, β=1., γ=0.)
-    # # mask the output image again for better interpretation of results
-    # canny_mask = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
-    # # compute steering advice for car
-    # steering = steer(image, left_line, right_line)
+    # Hough Transform Lines
+    lines, line_img = hough_lines(img = masked_img, rho = 1, theta = np.pi/180, threshold = 20, min_line_len = 20, max_line_gap = 180)
+    # draw left and right line
+    left_line, right_line = slope_lines(line_img, lines)
+    # draw slope between two lines
+    slope_weighted_img = slope(line_img, left_line, right_line)
+    # add layer with slope lines to original input image
+    output = weighted_img(img = slope_weighted_img, initial_img = image, α=0.8, β=1., γ=0.)
+    # mask the output image again for better interpretation of results
+    canny_mask = region_of_interest(img = canny_img, vertices = get_vertices(image, 'border'), vertices_car = get_vertices(image, 'car'))
+    # compute steering advice for car
+    steering = steer(image, left_line, right_line)
 
-    output = masked_img
+    output = output
 
     canny_mask = 0
 
