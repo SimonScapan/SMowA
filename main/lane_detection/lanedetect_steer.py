@@ -137,10 +137,12 @@ def slope_lines(image,lines):
 
     left_lines = [] # Like /
     right_lines = [] # Like \
+    print(f"line count: {len(lines)}")
     for line in lines:
         for x1,y1,x2,y2 in line:
 
             if x1 == x2:
+                print("-> erro vertical line")
                 pass #Vertical Lines
             else:
                 m = (y2 - y1) / (x2 - x1)
