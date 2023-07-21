@@ -271,8 +271,8 @@ def lane_finding_pipeline_indoor(image):
     ## Canny Edge Detection
     # Calculate good threshold
     med_val = np.median(smoothed_img) 
-    lower = int(max(0 ,0.2*med_val))
-    upper = int(min(255,1*med_val))
+    lower = int(max(0 ,0*med_val))
+    upper = int(min(255, 0.5*med_val))
     # perform canny edge detection
     canny_img = canny(img = smoothed_img, low_threshold = lower, high_threshold = upper)
 
@@ -293,7 +293,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)"""
 
-    output = smoothed_img
+    output = canny_img
 
     canny_mask = []
     steering = 0
