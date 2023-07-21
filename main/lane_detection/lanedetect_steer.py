@@ -241,10 +241,10 @@ def steer(image, left_line, right_line):
         steering = (x2 - x1) #/100
 
     print("steering value before cut" + str(steering))
-    if steering > 150:
-        steering = 150
-    elif steering < -150:
-        steering = -150
+    if steering > 100:
+        steering = 100
+    elif steering < -100:
+        steering = -100
     
     print("steering value after cut" + str(steering))
 
