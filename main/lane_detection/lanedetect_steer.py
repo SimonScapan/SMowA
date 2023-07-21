@@ -242,8 +242,8 @@ def steer(image, left_line, right_line):
 
     if steering > 150:
         steering = 150
-    elif steering < 50:
-        steering = 50
+    # elif steering < 50:
+    #     steering = 50
 
         return steering
 
