@@ -137,7 +137,7 @@ def slope_lines(image,lines):
 
     left_lines = [] # Like /
     right_lines = [] # Like \
-    print(lines)
+    #print(lines)
     for line in lines:
         for x1,y1,x2,y2 in line:
 
@@ -291,7 +291,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)
 
-    # output = output
+    output = smoothed_img
 
     return output, canny_mask, steering
 
