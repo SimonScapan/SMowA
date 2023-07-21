@@ -152,8 +152,8 @@ def slope_lines(image,lines):
                 elif m >= 0:
                     right_lines.append((m,c))
 
-        left_line = np.median(left_lines, axis=0)
-        right_line = np.median(right_lines, axis=0)
+        left_line = np.mean(left_lines, axis=0)
+        right_line = np.mean(right_lines, axis=0)
 
         return left_line, right_line
 
