@@ -240,6 +240,11 @@ def steer(image, left_line, right_line):
     else:
         steering = (x2 - x1) #/100
 
+    if steering > 150:
+        steering = 150
+    elif steering < 50:
+        steering = 50
+
         return steering
 
 ################################################################################################
@@ -290,7 +295,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)
 
-    output = canny_img
+    # output = canny_img
 
     return output, canny_mask, steering
 
