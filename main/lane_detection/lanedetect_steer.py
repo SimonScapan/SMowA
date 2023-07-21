@@ -95,7 +95,7 @@ def get_vertices(image, scope):
     if scope == 'border':
         rows, cols = image.shape[:2]
         bottom_left  = [cols*0, rows]
-        top_left     = [cols*0.1, rows*0.4]
+        top_left     = [cols*0, rows*0.4]
         bottom_right = [cols*1.2, rows]
         top_right    = [cols*0.9, rows*0.4] 
 
