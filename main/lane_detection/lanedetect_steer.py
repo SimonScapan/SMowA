@@ -265,7 +265,7 @@ def lane_finding_pipeline_indoor(image):
     masked_img = cv2.threshold(gray_img, 225, 255, cv2.THRESH_BINARY)[1]
 
     # Gaussian Smoothing
-    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 11)
+    smoothed_img = gaussian_blur(img = masked_img, kernel_size = 17)
 
     """    
 
