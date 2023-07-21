@@ -239,7 +239,7 @@ def steer(image, left_line, right_line):
     if slope_width <85: 
         return None
     else:
-        steering = (x2 - x1) + 5 #/100
+        steering = (x2 - x1) #/100
 
         return steering
 
