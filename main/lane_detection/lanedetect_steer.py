@@ -95,9 +95,9 @@ def get_vertices(image, scope):
     if scope == 'border':
         rows, cols = image.shape[:2]
         bottom_left  = [cols*0, rows]
-        top_left     = [cols*0, rows*0.2]
+        top_left     = [cols*0, rows*0.3]
         bottom_right = [cols*1.2, rows]
-        top_right    = [cols*0.9, rows*0.2] 
+        top_right    = [cols*0.9, rows*0.3] 
 
         ver = np.array([[bottom_left, top_left, top_right, bottom_right]], dtype=np.int32)
     elif scope =='car':
@@ -291,7 +291,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)
 
-    output = smoothed_img
+    output = masked_img
 
     return output, canny_mask, steering
 
