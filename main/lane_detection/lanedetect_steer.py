@@ -152,8 +152,8 @@ def slope_lines(image,lines):
                 elif m >= 0:
                     right_lines.append((m,c))
 
-    left_line = np.mean(left_lines, axis=0)
-    right_line = np.mean(right_lines, axis=0)
+    left_line = np.median(left_lines, axis=0)
+    right_line = np.median(right_lines, axis=0)
 
     return left_line, right_line
 
@@ -262,7 +262,7 @@ def lane_finding_pipeline_indoor(image):
     # Change Brightness and Contrast to avoid misclassification caused by ground   
     bc_img = brightness_contrast(input_img = gray_img, contrast = 2, brightness = 0.4)
     
-    masked_img = cv2.threshold(gray_img, 225, 255, cv2.THRESH_BINARY)[1]
+    masked_img = cv2.threshold(bc_img, 225, 255, cv2.THRESH_BINARY)[1]
 
     # Gaussian Smoothing
     smoothed_img = gaussian_blur(img = masked_img, kernel_size = 13)
@@ -291,7 +291,7 @@ def lane_finding_pipeline_indoor(image):
     # compute steering advice for car
     steering = steer(image, left_line, right_line)
 
-    output = output
+    # output = output
 
     return output, canny_mask, steering
 
